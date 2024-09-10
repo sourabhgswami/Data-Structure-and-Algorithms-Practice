@@ -1,0 +1,19 @@
+I will be solve questions in this format : Step by Step 
+
+Reasoning: I am not just learning problem solving for OA,s but also for interviewing. In interviewing, you are ranked based on your how do you solve the problem, 
+how thorough you are and your communication skill. I find this framework really helpful for that. 
+
+
+Framework
+Step 1: Questions 
+Step 2: test cases 
+Step 3: Naive solution appraoch - thinking 
+Step 4: Code for Naive solution 
+Step 5: Check the code for errors
+Step 6: Dry run the test cases 
+Step 7: Time and Space complexity 
+Step 8: Better appraoch for this 
+Step 9: Code for better approach 
+Step 10 : check the code for errors 
+Step 11: Dry run the test cases 
+Step 12: Time and Space complexity 
