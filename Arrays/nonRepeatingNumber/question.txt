@@ -1,0 +1,146 @@
+Problem Statement:
+
+Given a list of integers nums, return the first non-repeating integer. If there is no such integer, return -1.
+
+Constraints:
+
+1 ≤ nums.length ≤ 10^3
+-10^4 ≤ nums[i] ≤ 10^4
+
+
+
+
+--------------------------------------------
+
+Framework
+Step 1: Questions 
+
+length of list is from 1 to 1000 
+number could be from -10000 to 10000 
+can there be a list with no nonrepeating number , where every number is different ?
+what if list has just 1 number ?
+what about empty list ? 
+if all elements are unique? return first non repeating element
+
+--------------------------------------------
+Step 2: test cases 
+
+example 
+
+[1,2,3,4,4] -> 1
+[1,1,2,3,3,4,5,5,] -> 2
+[1] ->1
+[1,2,3,4,5] -> 1
+--------------------------------------------
+Step 3: Naive solution appraoch - thinking 
+
+Compare each element pair wise to check if the element is unique or not 
+
+Intialize one pointer p1 
+
+transverse the lise using p1 
+
+for each element pointed by p1, intialize another element p2 to the start of list 
+
+Use p2 to traverse the list from the beginning to the end. During this traversal, check if the elements at the locations pointed by p1 and p2 are the same, ensuring p1 and p2 are not pointing to the same location.
+
+If an element pointed by p1 is found to be equal to an element pointed by p2 (where p1 does not point to the same location as p2), it indicates that the element at p1 is not unique. Break the inner loop (the traversal with p2) and move p1 to the next element to restart the check for uniqueness.
+
+If p2 completes its traversal (reaches the end of the list) without finding a duplicate, the element at p1 is unique. We can then return this element.
+
+Repeat this process until p1 has traversed the entire list.
+
+--------------------------------------------
+Step 4: Code for Naive solution 
+
+def find_first_unique(nums):
+
+#iterate through each element of list , pointer name p1
+    for p1 in range(len(nums)):
+        p2 = 0 
+    #compare the current element with all other element using pointer p2 
+        while (p2 < len(nums)):
+        #check if there index are not same and the value is same , then break 
+            if (p1 != p2 and nums[p1] == nums[p2]):
+                break 
+            p2 += 1
+
+    # if p2 reach end of list, then p1 is unique
+        if p2 == len(nums):
+            return nums[p1]
+
+    return none
+
+--------------------------------------------
+Step 5: Check the code for errors
+
+
+--------------------------------------------
+Step 6: Dry run the test cases 
+
+for test case 
+[1,1,2,2,3,4,5]
+
+it will return 4 
+
+for [1] - it will return 1
+
+for [0, 0]  - nothing 
+
+
+
+--------------------------------------------
+Step 7: Time and Space complexity 
+
+Time complexity - O(n**2)
+Space complexity - O(1)
+--------------------------------------------
+Step 8: Better appraoch for this 
+
+Using hashmaps / dictionary
+
+first pass - build a frequency map - count each element and there occurance 
+
+second pass - transverse the list for second time and check in the frequency in hashmaps
+
+--------------------------------------------
+Step 9: Code for better approach 
+
+def find_first_unique(nums):
+
+#step 1: intialize empty dictionary 
+    frequency = {}
+
+#step 2: Transverse the list once to count the occurance of each number 
+    for num in nums: 
+#if already in dictionary, increase count 
+        if num in frequency:
+            frequency[num] += 1
+#else if not in dictionary , add it with count of 1 
+        else:
+            frequency[num] = 1
+
+#step 3: transverse the list for second time to find non repeating number 
+    for num in nums:
+
+#if the fequency of number is 1, return it as a non repeating number 
+        if frequency[num] == 1:
+            return num
+    
+    return none 
+--------------------------------------------
+Step 10 : check the code for errors 
+
+
+--------------------------------------------
+Step 11: Dry run the test cases 
+
+for test case 
+[1,2,3,4,4,5]
+it will generate {1:1, 2:1, 3:1, 4:2, 5:1}
+and return 1 
+--------------------------------------------
+Step 12: Time and Space complexity 
+Time complexity is O(n)
+Space complexit is O(n)
+--------------------------------------------
