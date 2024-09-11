@@ -1,0 +1,124 @@
+Statement:
+
+Given a list of integers nums, find the second maximum value from the list.
+
+Constraints:
+
+2 ≤ nums.length ≤ 10³
+-10⁵ ≤ nums[i] ≤ 10⁵
+
+
+Framework
+Step 1: Questions 
+
+can there be multiple integers of same value ? yes 
+can there be a list with only 1 element ? yes , then return none
+are there decimals ? can be 
+
+--------------------------------------------
+Step 2: test cases 
+[1,2,3,4,5,6] ->5
+[1,1,2,2,9,9,3] -> 3
+[1,2] -> 1
+[1] -> none
+[] -> none
+--------------------------------------------
+Step 3: Naive solution appraoch - thinking 
+
+We can transverse the list twice 
+
+first transverse - we find the first maximum value 
+
+second transverse - we find the maximum value that is less than first maximum value 
+
+return second maximum value 
+--------------------------------------------
+Step 4: Code for Naive solution 
+def find_second_maximum(nums):
+
+# intialize two variables first_max and second_max as - infity 
+    first_max = float("-inf")
+    second_max = float("-inf")
+
+
+# first tranvserse, if number greater than first_max , update first_max to current number 
+    for num in nums:
+        if num > first_max:
+            first_max = num
+
+#second tranvserse, if number less than first_max but greater than second_max , update second_max
+    for item in nums: 
+        if item ! = first_max and item > second_max:
+            second_max = item 
+
+#return second_max
+    return second_max 
+--------------------------------------------
+Step 5: Check the code for errors
+--------------------------------------------
+Step 6: Dry run the test cases 
+
+[1,2,3,4,5,6]
+first max = 6
+
+second max = 5 
+
+
+--------------------------------------------
+Step 7: Time and Space complexity 
+
+Time complexity  - O(n)
+Space complexity - O(1)
+--------------------------------------------
+Step 8: Better appraoch for this 
+
+It may not be a better approach but we can also do it with just 1 transversal 
+
+    Initialize two variables, first_max and second_max, both set to negative infinity.
+
+    Iterate through the list and for each element in the list:
+
+    If the current element is greater than first_max , do the following:
+
+    Update second_max to the first_max so it will hold the previous maximum element.
+
+    Update first_max to store the current maximum element.
+
+    If the current element is not equal to first_max and is greater than second_max:
+
+    Update second_max with the current element.
+
+    After completing the traversal of the list, return the value stored in second_max.
+--------------------------------------------
+Step 9: Code for better approach 
+def find_second_maximum(nums):
+    #initalize two variable to negative infinity 
+    first_max = float("-inf")
+    second_max = float("-inf")
+
+    #iterate through each element of list 
+    for num in nums:
+    #if current element is greater than first_max , then update second max value to first max and first max value to current element 
+        if num > first_max:
+            second_max = first_max 
+            first_max = num 
+    # if current element is greater than second man , then update value to second max 
+        elif num > second_max:
+            second_max = num 
+
+    #return second max value 
+    return second_max
+--------------------------------------------
+Step 10 : check the code for errors 
+
+--------------------------------------------
+Step 11: Dry run the test cases 
+
+[1,2,3,4,5,6]
+
+--------------------------------------------
+Step 12: Time and Space complexity 
+
+time complexity = O(n)
+space complexity = O(1)
+--------------------------------------------
