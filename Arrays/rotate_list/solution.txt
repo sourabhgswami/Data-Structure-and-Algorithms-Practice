@@ -1,0 +1,96 @@
+Problem Statement : 
+
+Given a list nums and an integer k, rotate the list to the right by k positions
+ so that each rotation involves shifting the elements one position at a time.
+
+Constraints:
+
+1 ≤ nums.length ≤ 10³
+-10⁵ ≤ nums[i] ≤ 10⁵
+1 ≤ k ≤ 10³
+
+Step 1: Questions 
+what could be the value of k ? 1000 and min 1 
+can there be list with no element ? return same 
+can there be a list with same element ? return same 
+--------------------------------------------
+Step 2: test cases 
+[1,2,3,4] k =1 -> [4,1,2,3]
+[,1,2,3,4] k = 3 -[2, 3, 4, 1]
+
+--------------------------------------------
+Step 3: Naive solution appraoch - thinking 
+Brute force 
+Determine position of each element after rotation by adding the number of position we want to the index of element 
+to handle case, where it exceeds list length, we do modulo of the list length 
+Once we determine the new index, we place the element at position in roatated list 
+
+--------------------------------------------
+Step 4: Code for Naive solution 
+
+def right_rotate(nums, k): 
+
+    #check list length, if 0 - return same list else, count the effective roation amount by module to list length 
+    if k == 0:
+        return nums 
+    else:
+        k = k % len(nums)
+
+    #intialize new list to store element 
+    rotatedlist = []
+
+    #check elements at the end and put them in new list 
+    for items in range(len(nums) - k , len(nums)):
+        rotatedlist.append(nums[items])
+
+
+    #get the remaning elements and put them in rotated list 
+    for items in range(0, len(nums)-k):
+        rotatedlist.append(nums[items])
+
+    return rotatedlist
+--------------------------------------------
+Step 5: Check the code for errors
+--------------------------------------------
+Step 6: Dry run the test cases 
+--------------------------------------------
+Step 7: Time and Space complexity 
+Time complexity = O(n)
+Space complexity = O(n)
+--------------------------------------------
+Step 8: Better appraoch for this 
+Slice shift rotation
+
+If the length of the list is non-zero, determine the effective rotation index k by taking the modulo of k with the length of the list. This ensures that the rotation stays within the bounds of the list.
+
+Next, to extract the rotated list, perform the following steps:
+
+Take a slice of the list nums containing the last k elements. These elements will move to the front after rotation.
+
+Take a slice of the list nums containing all elements except the last k elements. These elements will stay at the end after rotation.
+
+Concatenate the two slices obtained in the previous step to form the rotated list.
+
+Return the rotated list.
+
+--------------------------------------------
+Step 9: Code for better approach 
+
+def right_rotate(nums, k):
+    #determine rotation index by modulo 
+    if len(nums) == 0:
+        k = 0 
+    else:
+        k = k % len(nums)
+    #perform roation by slicing the list 
+    
+    rotatedlist = nums[-k:] + nums[:-k]
+
+    return rotatedlist
+--------------------------------------------
+Step 10 : check the code for errors 
+--------------------------------------------
+Step 11: Dry run the test cases 
+--------------------------------------------
+Step 12: Time and Space complexity 
+--------------------------------------------

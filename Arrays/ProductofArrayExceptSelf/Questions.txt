@@ -1,0 +1,139 @@
+Statement
+You are given an integer array nums. Return a resultant array product such that product[i] is equal to the product of all the elements of nums except nums[i].
+
+Write an algorithm that runs in O(n) time without using the division operation.
+
+Constraints:
+2 <= nums.length <= 1000
+-30 <= nums[i] <= 30
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+----------------
+
+Step 1: Questions 
+can there be negative numbers ? Yes
+can there be zero ? Yes
+is it possible everything is 0 ? yes 
+num length is between 2 and 1000 
+numbers cfould be from -30 to 30 
+there product will never excell 32 bit intger 
+
+What could be edge cases? Can it be empty ? no 
+----------------------------------------------------------
+Step 2: test cases 
+[,1,1,1,1] --> [1,1,1,1]
+[0,1,2,3] --> [6, 0, 0, 0]
+[2,4,6,8] --> [192, 96, 64, 48]
+[-1,2,1,3] --> [6, -3, -6, -2]
+----------------------------------------------------------
+Step 3: Naive solution appraoch - thinking 
+What we can do is 
+
+Iterate thorugh the list nums 
+then do product of every number except that number 
+add it into array 
+
+How ? 
+Using a variable left 
+
+Iterate through thte array list 
+At number n , 
+get the product of all the elements on right side 
+Multiply it to the product of left side 
+Multiple left to the current number n 
+
+----------------------------------------------------------
+Step 4: Code for Naive solution 
+
+def find_product(nums):
+    #empty list to store the product of all the numbers 
+    product = []
+
+    #initalize left to 1 
+    left = 1
+
+    # for loop to iterate through the list 
+    for i in range(len(nums)):
+        current_product = 1
+
+
+    # find the product of all the numbers on the right side 
+        for values in nums[i+1:]:
+            current_product *= values
+
+    # Multiplt the products of the right side to the left 
+        current_product *= left
+    
+    # Append it to the product list 
+        product.append(current_product)
+
+    # update left to left * nums[i]
+        left *= nums[i]
+
+    #return the product list
+    return product 
+
+----------------------------------------------------------
+Step 5: Check the code for errors
+    no erros 
+----------------------------------------------------------
+Step 6: Dry run the test cases 
+
+for test cases [1,1,1,0]  -> 
+[0, 0, 0 , 1]
+
+for test cases [0,1,0,1]
+[0,0,0,0]
+
+for test case [1.2.3.4]
+[24, 12, 8, 6]
+----------------------------------------------------------
+Step 7: Time and Space complexity 
+Time complext is O(n**2)
+Space complexit is O(1)
+----------------------------------------------------------
+
+Step 8: Better appraoch for this 
+There is better approach for this 
+Bidirectional product accumulation 
+
+What we do in this is , we have a list 
+going left to right, 
+We keep track of products 
+
+for example for [1,2,3,4] -> [24, 12, 8, 6]
+left to right is [1,1 ,2, 6]
+
+the go left to right and multiple each number to that 
+
+[1,1,2,6]
+now we get the right to left 
+[1, 6, 12, 12]
+
+and then right to left , multiplying the product to product of right 
+we will get [24, 12, 8, 6]
+ ----------------------------------------------------------
+Step 9: Code for better approach 
+
+def 
+# intialize left = 1 and right 1 
+# intialize empty product 
+
+# left to right for loop , intialize loop for values in numbs 
+# append value of left in product 
+# update value of left by multiplying it current number
+
+# right loop , right to left , Intialize a loop for product list from right to left , so range(len(prodcut)-1, -1, -1)
+# multiple the value of i in product to right 
+# update value of right by multiple it to the current number
+
+# return the value of product 
+----------------------------------------------------------
+Step 10 : check the code for errors 
+----------------------------------------------------------
+Step 11: Dry run the test cases 
+----------------------------------------------------------
+Step 12: Time and Space complexity 
+
+Time and space complexity is O(n) ,O(1)
+----------------------------------------------------------
